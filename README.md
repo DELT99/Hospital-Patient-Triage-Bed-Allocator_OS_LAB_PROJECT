@@ -68,24 +68,3 @@ make stop
   Coalescing           Adjacent free partitions merged after discharge
   CPU Scheduling Sim   FCFS, Priority, SJF with avg metrics
 
-============================================================
-  WARD CONFIGURATION
-============================================================
-
-  Bed Type     Count    Care Units Each    Total Units
-  ----------   -----    ---------------    -----------
-  ICU            4            3                12
-  Isolation      4            2                 8
-  General       12            1                12
-  ----------   -----    ---------------    -----------
-  TOTAL         20            -                32
-============================================================
-
-## Valgrind - ZERO MEMORY LEAKS
-
-==XXXX== HEAP SUMMARY:
-==XXXX==   in use at exit: 0 bytes in 0 blocks
-==XXXX==   total heap usage: X allocs, X frees, X bytes allocated
-==XXXX==
-==XXXX== All heap blocks were freed -- no leaks are possible
-==XXXX== ERROR SUMMARY: 0 errors from 0 contexts
