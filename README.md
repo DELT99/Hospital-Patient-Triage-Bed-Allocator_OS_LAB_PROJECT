@@ -14,7 +14,7 @@ cd ~/hospital
 make run
 
 # 3. Send a patient (Terminal 2)
-./scripts/triage.sh "Ali Raza" 28 9 0
+./scripts/triage.sh "Muhammad Talha" 28 9 0
 
 # 4. Stress test (20 patients)
 make stress
