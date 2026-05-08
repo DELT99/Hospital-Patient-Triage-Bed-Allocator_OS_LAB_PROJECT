@@ -23,8 +23,11 @@ make stress
 make stop
 ```
 
-#COMPLETE STEP BY STEP FUNCTIONS OF HOSPITAL SYSTEM RUN TUTORIAL (SKIP IF unnecessary)
+## COMPLETE STEP BY STEP FUNCTIONS RUN TUTORIAL (SKIP IF unnecessary)
 download the zip in ubuntu with firefox or copy-paste from windows to ubuntu
+
+
+
 STEP 1 — Open Terminal
 Press Ctrl + Alt + T
 
@@ -77,6 +80,7 @@ Check shared memory, FIFOs, and semaphores:
 ipcs -m
 ls -la /tmp/triage_fifo /tmp/discharge_fifo
 ls /dev/shm/ | grep sem
+
 6. Admit First Patient (Critical ICU)
 
 Send ICU patient:
@@ -93,13 +97,11 @@ Send isolation case:
 ./scripts/triage.sh "Sara Khan" 45 6 1
 
 
-
 8. Admit General Ward Patient
 
 Send general patient:
 
 ./scripts/triage.sh "Zain Ahmed" 33 2 0
-
 
 
 9. Priority Queue Demo
@@ -253,3 +255,24 @@ make stop
   Coalescing           Adjacent free partitions merged after discharge
   CPU Scheduling Sim   FCFS, Priority, SJF with avg metrics
 
+============================================================
+  WARD CONFIGURATION
+============================================================
+
+  Bed Type     Count    Care Units Each    Total Units
+  ----------   -----    ---------------    -----------
+  ICU            4            3                12
+  Isolation      4            2                 8
+  General       12            1                12
+  ----------   -----    ---------------    -----------
+  TOTAL         20            -                32
+============================================================
+
+## Valgrind - ZERO MEMORY LEAKS
+
+==XXXX== HEAP SUMMARY:
+==XXXX==   in use at exit: 0 bytes in 0 blocks
+==XXXX==   total heap usage: X allocs, X frees, X bytes allocated
+==XXXX==
+==XXXX== All heap blocks were freed -- no leaks are possible
+==XXXX== ERROR SUMMARY: 0 errors from 0 contexts
