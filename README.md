@@ -24,7 +24,7 @@ make stop
 ```
 
 ## COMPLETE STEP BY STEP FUNCTIONS RUN TUTORIAL (SKIP IF unnecessary)
-download the zip in ubuntu with firefox or copy-paste from windows to ubuntu
+Download the Zip file in Ubuntu with Firefox or copy-paste from Windows to Ubuntu
 
 
 
@@ -40,28 +40,28 @@ bash
 sudo apt install gcc make -y
 
 
-1. Clean Start
+#1. Clean Start
 
 cd ~/hospital
 make clean
 
 
 
-2. Build Project
+#2. Build Project
 Compile both programs:
 make all
 
 
 
-3. Show Project Structure
+#3. Project Structure (skippable)
 
-Display all files and folders:
+VERIFY all files and folders:
 
 find . -type f | sort
 ls -la src/ scripts/ logs/
 4. Start Hospital (Phase 1)
 
-Start live log monitor first:
+Start live log monitor to check:
 
 cd ~/hospital
 watch -n 1 'echo "=== MEMORY LOG ===" && tail -20 logs/memory_log.txt && echo "" && echo "=== SCHEDULE LOG ===" && tail -10 logs/schedule_log.txt'
@@ -73,7 +73,7 @@ make run
 
 
 
-5. Verify IPC Resources
+#5. Verify IPC Resources (skippable)
 
 Check shared memory, FIFOs, and semaphores:
 
@@ -81,7 +81,8 @@ ipcs -m
 ls -la /tmp/triage_fifo /tmp/discharge_fifo
 ls /dev/shm/ | grep sem
 
-6. Admit First Patient (Critical ICU)
+
+#6. Admit First Patient (Critical ICU)
 
 Send ICU patient:
 
@@ -90,21 +91,21 @@ cd ~/hospital
 
 Show full lifecycle from reception → scheduling → allocation → simulator start.
 
-7. Admit Isolation Patient
+#7. Admit Isolation Patient
 
 Send isolation case:
 
 ./scripts/triage.sh "Sara Khan" 45 6 1
 
 
-8. Admit General Ward Patient
+#8. Admit General Ward Patient
 
 Send general patient:
 
 ./scripts/triage.sh "Zain Ahmed" 33 2 0
 
 
-9. Priority Queue Demo
+#9. Priority Queue Demo
 
 Send low priority then critical rapidly:
 
@@ -114,7 +115,7 @@ sleep 0
 
 Show critical admitted before minor.
 
-10. Semaphore Blocking Demo
+#10. Semaphore Blocking Demo
 
 Fill ICU beds:
 
@@ -130,19 +131,19 @@ sleep 0.3
 
 
 
-11. Nurse Thread Activity
+#11. Nurse Thread Activity
 
-Pause and show nurse status lines updating automatically.
+nurse status lines updating automatically.
 
-12. Ward Map Evolution
+#12. Ward Map Evolution
 
-Scroll terminal to show multiple MAP updates over time.
+Scroll terminal to check multiple MAP updates over time.
 
-13. Coalescing Demo
+#13. Coalescing Demo
 
 Wait for adjacent discharges and show merge event.
 
-14. Allocation Strategies
+#14. Allocation Strategies (skippable)
 
 Stop hospital:
 
@@ -165,27 +166,28 @@ Restore Best-Fit:
 
 kill %1
 make run
-15. Stress Test
+
+#15. Stress Test
 
 Submit 20 patients:
 make stress
 
 
 
-16. Show Memory Log
+#16. Show Memory Log 
 
 cat logs/memory_log.txt
-17. Graceful Shutdown + Schedule Log
+#17. Graceful Shutdown + Schedule Log
 
 Shutdown:
 
 make stop
 
 cat logs/schedule_log.txt
-18. Final Stop Script Summary
+#18. Final Stop Script Summary
 
 
-19. Valgrind Leak Check
+#19. Valgrind Leak Check
 
 Run:
 
@@ -199,13 +201,16 @@ kill -SIGTERM $VPID
 wait $VPID
 
 
-20. Show Makefile Targets
+#20. Show Makefile Targets
 
-Demonstrate all commands:
+#Demonstrate all commands:
 
 make clean
+
 make all
+
 make test
+
 make stop
 
 ===========================================
@@ -255,24 +260,3 @@ make stop
   Coalescing           Adjacent free partitions merged after discharge
   CPU Scheduling Sim   FCFS, Priority, SJF with avg metrics
 
-============================================================
-  WARD CONFIGURATION
-============================================================
-
-  Bed Type     Count    Care Units Each    Total Units
-  ----------   -----    ---------------    -----------
-  ICU            4            3                12
-  Isolation      4            2                 8
-  General       12            1                12
-  ----------   -----    ---------------    -----------
-  TOTAL         20            -                32
-============================================================
-
-## Valgrind - ZERO MEMORY LEAKS
-
-==XXXX== HEAP SUMMARY:
-==XXXX==   in use at exit: 0 bytes in 0 blocks
-==XXXX==   total heap usage: X allocs, X frees, X bytes allocated
-==XXXX==
-==XXXX== All heap blocks were freed -- no leaks are possible
-==XXXX== ERROR SUMMARY: 0 errors from 0 contexts
