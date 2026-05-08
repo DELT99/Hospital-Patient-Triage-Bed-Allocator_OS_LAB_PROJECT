@@ -23,7 +23,7 @@ make stress
 make stop
 ```
 
-## COMPLETE STEP BY STEP FUNCTIONS RUN TUTORIAL (SKIP IF unnecessary)
+## COMPLETE STEP BY STEP HOSPITAL FUNCTIONS (PROJECT) RUN TUTORIAL (SKIPPABLE)
 Download the Zip file in Ubuntu with Firefox or copy-paste from Windows to Ubuntu
 
 
