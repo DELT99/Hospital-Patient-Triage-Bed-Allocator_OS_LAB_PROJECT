@@ -614,7 +614,7 @@ void *receptionist_thread(void *arg) {
            (unsigned long)pthread_self());
 
     /* Open triage FIFO — blocks until triage.sh opens the write end */
-    int triage_fd = open(TRIAGE_FIFO, O_RDONLY);
+    int triage_fd = open(TRIAGE_FIFO, O_RDWR | O_NONBLOCK);
     if (triage_fd < 0) {
         perror("[ERROR] open TRIAGE_FIFO");
         return NULL;
@@ -696,15 +696,17 @@ void *receptionist_thread(void *arg) {
                 enqueue_patient(&rec);
 
             } else if (n == 0) {
-                /* Writer closed — reopen for next patient */
-                close(triage_fd);
-                sleep(1);
-                triage_fd = open(TRIAGE_FIFO, O_RDONLY);
-                if (triage_fd < 0) {
-                    perror("[ERROR] reopen TRIAGE_FIFO");
-                    break;
-                }
-            }
+    /* Writer closed — reopen for next patient */
+    close(triage_fd);
+    if (!running) break;
+    sleep(1);
+    if (!running) break;
+    triage_fd = open(TRIAGE_FIFO, O_RDWR | O_NONBLOCK);
+    if (triage_fd < 0) {
+        perror("[ERROR] reopen TRIAGE_FIFO");
+        break;
+    }
+ }
         }
 
         /* ── Discharge from patient_simulator ─ */
